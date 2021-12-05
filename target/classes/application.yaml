@@ -1,0 +1,4 @@
+application:
+  name: java_kafka
+server:
+  port: 8091

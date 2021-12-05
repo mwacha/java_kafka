@@ -1,0 +1,38 @@
+application:
+  name: java_kafka
+server:
+  port: 8091
+
+#APP SPECIFIC CUSTOM PROPERTIES
+app:
+  kafka:
+    producer:
+      topic: ASYNC_TOPIC
+    consumer:
+      topic: ASYNC_TOPIC
+#SPRING PROPERTIES
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    ssl:
+      protocol: SSL
+      trust-store-location: classpath:/app/store/truststore.jks
+      trust-store-password: password
+      key-store-location: classpath:/app/store/keystore.jks
+      key-store-password: password
+      key-password: password
+    producer:
+      retries: 0
+      acks: all
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: group-1
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+#LOGGING PROPERTIES
+logging:
+  level:
+    root: INFO
